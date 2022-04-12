@@ -1,35 +1,18 @@
 import React from "react";
-import { useState } from "react";
+import ItemList from "./ItemList";
 
-export const Content = () => {
-  let array = [
-    {
-      id: 1,
-      checked: false,
-      item: "One half pound bag of Cocoa",
-    },
-    {
-      id: 2,
-      checked: false,
-      item: "Item 2",
-    },
-    {
-      id: 3,
-      checked: false,
-      item: "Item 3",
-    },
-  ];
-  const [items, setItems] = useState(array);
-
+export const Content = ({ items, handleCheck, handleDelete }) => {
   return (
     <main>
-      <ul>
-        {items.map((item) => (
-          <li className="item">
-            <input type="checkbox" checked={item.checked}></input>
-          </li>
-        ))}
-      </ul>
+      {items.length ? (
+        <ItemList
+          items={items}
+          handleCheck={handleCheck}
+          handleDelete={handleDelete}
+        />
+      ) : (
+        <p style={{ marginTop: "2rem" }}> A lista atualmente está vazia.</p>
+      )}
     </main>
   );
 };
